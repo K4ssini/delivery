@@ -496,3 +496,31 @@ header ul input#busca
 
 /* Ao buscar, o produto encontrado para um pouco abaixo do topo */
 .containerProd { scroll-margin-top: 4vh; }
+
+#sair
+{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding: 1vh 3vw;
+    border: none;
+    border-radius: 1vh;
+    background-color: #f3dada;
+    color: #8b2222;
+    cursor: pointer;
+}
+
+#sair:hover
+{
+    background-color: #e8c4c4;
+}
+
+body.darkmode #sair
+{
+    background-color: #4a1f1f;
+    color: #f3b8b8;
+}
+
+body.darkmode #sair:hover
+{
+    background-color: #5e2828;
+}
