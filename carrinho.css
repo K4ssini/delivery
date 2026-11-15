@@ -1,0 +1,291 @@
+* 
+{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body
+{
+    background-color: white;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* ========================HEADER======================== */
+header ul
+{
+    display: flex;
+    list-style: none;
+    gap: 10vh;
+    font-size: 1.3em;
+    margin-top: 1vh;
+    box-shadow: 1px 3px #912280;;
+
+    img
+    {
+        height: 9vh;
+        margin-top: -1vh;
+    }
+
+    input
+    {
+        margin-left: 7vh;
+        margin-top: 3.3vh;
+        width: 65vh;
+        border: none;
+        border-bottom: 2px solid #B9CC4E;
+        font-size: 1.1em;
+    }
+
+    input:focus
+    {
+        outline: none;
+    }
+
+    a
+    {
+        margin-top: 3vh;
+        margin-left: 10vh;
+        text-decoration: none;
+        color: #912280;
+    }
+
+    #agruparHeader
+    {
+        margin-left: 85vh;
+        display: flex;
+    }
+
+    svg
+    {
+        height: 3.5vh;
+        margin-top: -1vh;
+    }
+
+    #busca
+    {
+        margin-top: 3vh;
+        margin-left: 4vh;
+        opacity: 0.8;
+        position: absolute;
+    }
+}
+/* ========================Login======================== */
+#login
+{
+    width: 60vw;
+    height: 70vh;
+    padding: 17vh;
+    border: none;
+    border-radius: 2.5vh;
+    margin: auto;
+    background: #fff;
+    color: #333;
+    overflow-y: hidden;
+
+    h2
+    {
+        text-align: center;
+        margin-bottom: 3vh;
+        color: #912280;
+    }
+    
+    ::backdrop
+    {
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(3px);
+    }
+
+    input
+    {
+        display: block;
+        width: 100%;
+        padding: 2vh;
+        margin-bottom: 3vh;
+        border: 1px solid #ddd;
+        border-radius: 1.2vh;
+        outline: none;
+    }
+
+    #ButLogin
+    {
+        margin-top: 3vh;
+        width: 100%;
+        padding: 2vh;
+        border: none;
+        border-radius: 1.2vh;
+        background: #B9CC4E;
+        color: white;
+        font-size: 1.3rem;
+        cursor: pointer;
+    }
+
+    #ButLogin:hover
+    {
+        background: #9eaf3c;
+    }
+
+    #novo p
+    {
+        text-align: center;
+        margin-top: 2vh;
+    }
+
+    #novo a
+    {
+        color: #82952f;
+        text-decoration: none;
+        font-weight: bold;
+        margin-left: 1vh;
+        font-size: 1.2rem;
+    }
+
+    #fecharLogin
+    {
+        position: absolute;
+        top: 2vh;
+        right: 2vh;
+        background: transparent;
+        border: none;
+        font-size: 3rem;
+        color: #777;
+        cursor: pointer;
+    }
+}
+/* ========================Carrinho======================== */
+
+main
+{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 5vw;
+    padding: 8vh 8vw;
+}
+
+#itens h1
+{
+    color: #912280;
+    margin-bottom: 5vh;
+    font-size: 2.5rem;
+}
+
+#listaProdutos
+{
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+}
+
+.produtoCarrinho
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5vh;
+    padding: 3vh;
+    border-bottom: 1px solid #ddd;
+}
+
+.infoProduto
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+}
+
+.infoProduto h3
+{
+    color: #912280;
+}
+
+.controlesQuantidade
+{
+    display: flex;
+    align-items: center;
+    gap: 1.7vh;
+}
+
+.controlesQuantidade button, .removerProduto
+{
+    cursor: pointer;
+    border: none;
+    padding: 1.5vh 2vh;
+    border-radius: 0.8vh;
+}
+
+.controlesQuantidade button
+{
+    background-color: #C1CFA9;
+}
+
+.removerProduto
+{
+    background-color: #f3dada;
+    color: #8b2222;
+}
+
+#voltarMenu
+{
+    display: inline-block;
+    margin-top: 4vh;
+    color: #912280;
+    text-decoration: none;
+}
+
+#resumo
+{
+    background-color: #C1CFA9;
+    padding: 4vh;
+    border-radius: 1.5vh;
+    width: 100%;
+    height: fit-content;
+}
+
+#resumo h2
+{
+    margin-bottom: 3vh;
+}
+
+.linhaResumo
+{
+    display: flex;
+    justify-content: space-between;
+    margin: 2.5vh 0;
+    gap: 1vh;
+}
+
+.total
+{
+    font-size: 1.2em;
+    margin-top: 2vh;
+}
+
+#finalizarPedido
+{
+    width: 100%;
+    padding: 2vh;
+    background-color: #912280;
+    color: white;
+    border: none;
+    border-radius: 1vh;
+    cursor: pointer;
+    font-family: "Comfortaa", sans-serif;
+    margin-top: 3vh;
+
+    
+}
+
+#finalizarPedido:hover
+{
+    background-color: #8f4082;
+}
+@media (max-width: 47em) {
+    main {
+        grid-template-columns: 1fr;
+        padding: 5vh 6vw;
+    }
+}

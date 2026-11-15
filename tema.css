@@ -1,0 +1,498 @@
+
+
+html
+{
+    font-size: 100%;
+}
+img
+{
+    max-width: 100%;
+}
+
+/* Cores do modo escuro */
+:root
+{
+    --fundo-dark: #18111c;
+    --fundo-dark2: #241a29;
+    --borda-dark: #4a3a50;
+    --letra-dark: #eee;
+    --rosa-dark: #e3a6da;
+    --roxo: #912280;
+    --roxo-claro: #b04aa0;
+}
+
+/* ---------- Botão de tema ---------- */
+#alternarTema
+{
+    position: fixed;
+    right: 3vw;
+    bottom: 3vh;
+    z-index: 10;
+    width: 6vh;
+    height: 6vh;
+    min-width: 2.8rem;
+    min-height: 2.8rem;
+    border: none;
+    border-radius: 50%;
+    background: #912280;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.3);
+}
+
+/* --------------Header------------ */
+header ul
+{
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2vh 3vw;
+    padding: 1vh 3vw;
+}
+header ul a
+{
+    margin: 0;
+}
+header ul #agruparHeader
+{
+    margin-left: 0;
+    gap: 4vw;
+    flex-wrap: wrap;
+    align-items: center;
+}
+header ul svg
+{
+    margin-top: 0;
+}
+
+/* -------------Login------------- */
+#login
+{
+    height: auto;
+    max-height: 90vh;
+    padding: 8vh 6vw;
+    overflow-y: auto;
+}
+#login::backdrop
+{
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(0.4vh);
+}
+
+#login #novo
+{
+    text-align: center; margin-top: 2vh;
+}
+
+/* =================CELULAR===================== */
+@media (max-width: 896px)
+{
+    /* ----- Header ----- */
+    header ul img
+    {
+        height: 7vh;
+    }
+    header ul
+    {
+        font-size: 1.05em;
+    }
+
+    /* -----------Login------------ */
+    #login
+    {
+        width: 92vw;
+        padding: 7vh 6vw;
+    }
+
+    /* ----------Sobre Nós------------ */
+    #SobreNós
+    {
+        padding: 0 5vw;
+    }
+    #SobreNós h1
+    {
+        margin-bottom: 4vh;
+    }
+    #SobreNós #grida
+    {
+        grid-template-columns: 1fr;
+        gap: 4vh;
+    }
+    #SobreNós #AçaíCaindo
+    {
+        display: none;
+    }
+    #SobreNós #textoSobre
+    {
+        margin: 0;
+        font-size: 1.05rem;
+    }
+    #SobreNós #textoSobre br
+    {
+        display: none;
+    }
+    #SobreNós #imgAçaí
+    {
+        width: 80%;
+        height: 32vh;
+        margin: 0 auto;
+    }
+
+    /* ---------Essência--------- */
+    #Essência
+    {
+        margin-top: 8vh;
+        padding: 0 5vw;
+    }
+    #Essência h2
+    {
+        font-size: 1.2rem;
+    }
+    #Essência #grida2
+    {
+        grid-template-columns: 1fr;
+    }
+    #Essência #frutasE,#Essência #frutasD
+    {
+        display: none;
+    }
+    #Essência #Infos
+    {
+        width: 100%;
+        height: 30vh;
+        margin-top: 4vh;
+        background-size: contain;
+    }
+
+    /* ---------------Menu------------- */
+    #Banner
+    {
+        width: 92%;
+        height: 28vh;
+        margin: 3vh auto 0;
+        display: block;
+    }
+    #cardápio h1
+    {
+        margin-bottom: 3vh;
+    }
+    #cardápio #direcionar
+    {
+        margin-left: 5vw;
+        gap: 4vw;
+        flex-wrap: wrap;
+    }
+    #cardápio #direcionar a h2
+    {
+        font-size: 1.1rem;
+    }
+    #cardápio #Tradicionais,#cardápio #Puro, #cardápio #Outros
+    {
+        margin: 0 5vw;
+        grid-template-columns: 1fr;
+    }
+    #cardápio .TítuloE
+    {
+        margin-left: 5vw;
+    }
+    #cardápio .containerProd h2
+    {
+        font-size: 1.3rem;
+    }
+    #cardápio .containerProd p
+    {
+        font-size: 1rem;
+    }
+    #cardápio .containerProd h3
+    {
+        font-size: 1.2rem;
+    }
+
+    /* ---------Sections H1------ */
+    #SobreNós h1, #Essência h1, #cardápio h1, #itens h1
+    {
+        font-size: 1.6rem;
+    }
+
+    /* ----- Carrinho ----- */
+    .produtoCarrinho
+    {
+        flex-wrap: wrap;
+        padding: 2vh 0;
+    }
+
+    /* ----- Cadastro ----- */
+    form
+    {
+        width: 90vw;
+    }
+    #textInput
+    {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        width: 100%;
+        height: auto;
+        row-gap: 2.5vh;
+    }
+    #textInput #DivNome
+    {
+        grid-column: auto;
+    }
+    #textInput label
+    {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 0.8vh;
+    }
+    #textInput input, #textInput #nome
+    {
+        width: 100%;
+        height: 5.5vh;
+    }
+    form button
+    {
+        width: 100%;
+        padding: 2vh 0;
+        margin: 3vh 0;
+    }
+
+    /* ------------Footer----------- */
+    footer #agrupar
+    {
+        margin-right: 0;
+        grid-template-columns: 1fr;
+        gap: 3vh;
+        padding: 0 6vw;
+    }
+    footer #logoFooter
+    {
+        margin: 3vh 0 0;
+        width: 45vw;
+        height: auto;
+    }
+    footer #Acesso,footer #Ajuda, footer #Frase
+    {
+        margin-top: 0;
+    }
+    footer h1, footer #Frase h1
+    {
+        font-size: 1.2rem;
+    }
+    footer p
+    {
+        font-size: 1rem;
+    }
+}
+
+/* ====================Dark mode======================== */
+body.darkmode
+{
+    background-color: var(--fundo-dark);
+    color: var(--letra-dark);
+}
+
+/*==========================Header========================*/
+body.darkmode header
+{
+    background-color: var(--fundo-dark);
+}
+body.darkmode header ul
+{
+    box-shadow: 0.1vh 0.3vh var(--roxo-claro);
+}
+body.darkmode header ul a
+{
+    color: var(--rosa-dark);
+}
+body.darkmode header ul input#busca
+{
+    color: var(--letra-dark);
+}
+body.darkmode header ul input#busca::placeholder
+{
+    color: #aaa;
+}
+
+/*==========================Títulos========================*/
+body.darkmode #SobreNós h1,
+body.darkmode #Essência h1,
+body.darkmode #cardápio h1,
+body.darkmode #itens h1,
+body.darkmode #login h2
+{
+    color: var(--rosa-dark);
+}
+body.darkmode #Essência h2
+{
+    color: #c58bb8;
+}
+
+/*===========================Cardápio===========================*/
+body.darkmode #cardápio #direcionar a
+{
+    color: #d98bd0;
+}
+body.darkmode #cardápio .containerProd h3
+{
+    color: #d9a0d3;
+}
+body.darkmode .add-carrinho
+{
+    background-color: var(--roxo);
+}
+body.darkmode .add-carrinho:hover
+{
+    background-color: var(--roxo-claro);
+}
+body.darkmode #semResultados
+{
+    color: var(--rosa-dark);
+}
+
+/* Login */
+body.darkmode #login
+{
+    background: var(--fundo-dark2);
+    color: var(--letra-dark);
+}
+body.darkmode #login input
+{
+    background: var(--fundo-dark);
+    color: var(--letra-dark);
+    border-color: var(--borda-dark);
+}
+body.darkmode #login #novo a
+{
+    color: #b9cc4e;
+}
+body.darkmode #login #ButLogin
+{
+    color: var(--fundo-dark);
+}
+body.darkmode #login #mensagemLogin
+{
+    color: #ff8a80;
+}
+body.darkmode #fecharLogin
+{
+    color: #bbb;
+}
+
+/*=======================Footer=================== */
+body.darkmode footer
+{
+    background-color: #2b0d27;
+}
+
+/* Cadastro */
+body.darkmode #textInput label
+{
+    color: var(--rosa-dark);
+}
+body.darkmode #textInput input
+{
+    background: var(--fundo-dark2);
+    color: var(--letra-dark);
+    border-color: #6a4a70;
+}
+body.darkmode form button
+{
+    background-color: var(--roxo);
+    color: white;
+}
+
+/*=========================Carrinho====================== */
+body.darkmode .produtoCarrinho
+{
+    border-bottom-color: var(--borda-dark);
+}
+body.darkmode .infoProduto h3
+{
+    color: var(--rosa-dark);
+}
+body.darkmode .controlesQuantidade button
+{
+    background-color: #3d4a2a;
+    color: var(--letra-dark);
+}
+body.darkmode .removerProduto
+{
+    background-color: #4a1f1f;
+    color: #f3b8b8;
+}
+body.darkmode #voltarMenu
+{
+    color: var(--rosa-dark);
+}
+body.darkmode #resumo
+{
+    background-color: #2a2030;
+    color: var(--letra-dark);
+}
+body.darkmode #resumo hr
+{
+    border-color: var(--borda-dark);
+}
+body.darkmode #finalizarPedido:hover
+{
+    background-color: var(--roxo-claro);
+}
+
+/* ====================Usuário====================== */
+body.darkmode .informacao
+{
+    color: #ccc;
+}
+body.darkmode .icone svg
+{
+    filter: invert(1);
+}
+body.darkmode .pedido
+{
+    background-color: var(--fundo-dark2);
+    border-color: var(--borda-dark);
+    color: var(--letra-dark);
+}
+body.darkmode .perfil h2, body.darkmode .historico h2
+{
+    color: var(--rosa-dark);
+}
+
+/* Mensagem de erro do login */
+#login #mensagemLogin
+{
+    color: #c0392b;
+    text-align: center;
+    min-height: 1.5em;
+    margin-top: 1vh;
+}
+
+/* ---------- Barra de pesquisa (menu) ---------- */
+[hidden] { display: none !important; }
+
+header ul input#busca
+{
+    position: static;
+    opacity: 1;
+    margin: 0;
+    width: 35vw;
+    padding: 1vh 0.5vw;
+    background: transparent;
+    color: #333;
+}
+#semResultados
+{
+    text-align: center;
+    margin: 6vh 5vw;
+    font-size: 1.3rem;
+    color: #912280;
+}
+
+@media (max-width: 56em)
+{
+    header ul #liBusca { order: 3; flex: 1 1 100%; }
+    header ul input#busca { width: 100%; font-size: 1rem; }
+}
+
+/* Ao buscar, o produto encontrado para um pouco abaixo do topo */
+.containerProd { scroll-margin-top: 4vh; }

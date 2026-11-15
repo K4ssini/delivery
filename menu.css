@@ -1,0 +1,300 @@
+* 
+{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body
+{
+    background-color: white;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* ========================HEADER======================== */
+header ul
+{
+    display: flex;
+    list-style: none;
+    gap: 10vh;
+    font-size: 1.3em;
+    margin-top: 1vh;
+    box-shadow: 1px 3px #912280;;
+
+    img
+    {
+        height: 9vh;
+        margin-top: -1vh;
+    }
+
+    input
+    {
+        margin-left: 7vh;
+        margin-top: 3.3vh;
+        width: 65vh;
+        border: none;
+        border-bottom: 2px solid #B9CC4E;
+        font-size: 1.1em;
+    }
+
+    input:focus
+    {
+        outline: none;
+    }
+
+    a
+    {
+        margin-top: 3vh;
+        text-decoration: none;
+        color: #912280;
+    }
+
+    svg
+    {
+        height: 3.5vh;
+        margin-top: -1vh;
+    }
+
+    #busca
+    {
+        margin-top: 3vh;
+        opacity: 0.8;
+        width: 40vw;
+    }
+}
+
+/* ========================Login======================== */
+#login
+{
+    width: 60vw;
+    height: 70vh;
+    padding: 17vh;
+    border: none;
+    border-radius: 2.5vh;
+    margin: auto;
+    background: #fff;
+    color: #333;
+    overflow-y: hidden;
+
+    h2
+    {
+        text-align: center;
+        margin-bottom: 3vh;
+        color: #912280;
+    }
+    
+    ::backdrop
+    {
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(3px);
+    }
+
+    input
+    {
+        display: block;
+        width: 100%;
+        padding: 2vh;
+        margin-bottom: 3vh;
+        border: 1px solid #ddd;
+        border-radius: 1.2vh;
+        outline: none;
+    }
+
+    #ButLogin
+    {
+        margin-top: 3vh;
+        width: 100%;
+        padding: 2vh;
+        border: none;
+        border-radius: 1.2vh;
+        background: #B9CC4E;
+        color: white;
+        font-size: 1.3rem;
+        cursor: pointer;
+    }
+
+    #ButLogin:hover
+    {
+        background: #9eaf3c;
+    }
+
+    #novo p
+    {
+        text-align: center;
+        margin-top: 2vh;
+    }
+
+    #novo a
+    {
+        color: #82952f;
+        text-decoration: none;
+        font-weight: bold;
+        margin-left: 1vh;
+        font-size: 1.2rem;
+    }
+
+    #fecharLogin
+    {
+        position: absolute;
+        top: 2vh;
+        right: 2vh;
+        background: transparent;
+        border: none;
+        font-size: 3rem;
+        color: #777;
+        cursor: pointer;
+    }
+}
+
+/* ========================Banner======================== */
+#Banner
+{
+    background-image: url(imgs/banner-cardapio.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60vh;
+    width: 190vh;
+    margin-top: 5vh;
+    margin-left: 10vh;
+}
+/* ===============-=========Cardápio======================== */
+#cardápio
+{
+    margin-top: 7vh;
+
+    h1
+    {
+        text-align: center;
+        color: #912280;
+        font-size: 2.5rem;
+        margin-bottom: 5vh;
+    }
+
+    #direcionar
+    {
+        margin-left: 15vh;
+        display: flex;
+        gap: 5vh;
+        a
+        {
+            text-decoration: none;
+            color: #B459A6;
+            font-size: 1.4rem;
+        }
+        a:focus
+        {
+            text-decoration: underline;
+            text-decoration-color: #B9CC4E;
+            text-underline-offset: 0.5vh; 
+        }
+        
+    }
+
+    #Tradicionais, #Puro, #Outros
+    {
+        margin-left: 15vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        column-gap: 10vh;
+    }
+
+    .containerProd
+    {
+        margin-top: 5vh;
+        h2
+        {
+            color: #96C75B;
+            font-size: 1.7rem;
+            margin-bottom: 1.5vh;
+
+        }
+
+        p
+        {
+            font-size: 1.3rem;
+        }
+
+        h3
+        {
+            color: #7A3D7D;
+            font-size: 1.5rem;
+            margin-top: 1.5vh;
+        }
+    }
+
+    .TítuloE
+    {
+        text-align: start;
+        margin-top: 7vh;
+        margin-left: 15vh;
+    }
+}
+
+.add-carrinho
+{
+    background-color: #a85d9c;
+    color: white;
+    border: none;
+    border-radius: 1vh;
+    padding: 1.2vh 2vw;
+    cursor: pointer;
+    margin-top: 3%;
+    font-size: 1.1rem;
+}
+
+.add-carrinho:hover
+{
+    background-color: #b56fab;
+}
+
+/* ========================Footer======================== */
+footer
+{
+    margin-top: 5vh;
+    padding-bottom: 5vh;
+    background-color: #912280;
+    
+    h1
+    {
+        color: white;
+        font-size: 1.6rem;
+    }
+        
+    p
+    {
+        color: #E0C1E3;
+        font-size: 1.4rem;
+        margin-top: 2vh;
+    }
+
+    #agrupar
+    {
+        margin-right: 10vh;
+        display: grid;
+        grid-template-columns: 2fr 1.3fr 2fr 2fr;
+    }
+
+    #logoFooter
+    {
+        margin-top: 5vh;
+        margin-left: 5vh;
+        height: 15vh;
+        width: 30vh;
+    }
+
+    #Acesso, #Ajuda
+    {
+        margin-top: 7vh;
+    }
+
+    #Frase
+    {
+        margin-top: 10vh;
+
+    }
+}

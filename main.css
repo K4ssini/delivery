@@ -1,0 +1,331 @@
+* 
+{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body
+{
+    background-color: white;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* ========================HEADER======================== */
+header ul
+{
+    display: flex;
+    list-style: none;
+    gap: 10vh;
+    font-size: 1.3em;
+    margin-top: 1vh;
+    box-shadow: 1px 3px #912280;;
+
+    img
+    {
+        height: 9vh;
+        margin-top: -1vh;
+    }
+
+    input
+    {
+        margin-left: 7vh;
+        margin-top: 3.3vh;
+        width: 65vh;
+        border: none;
+        border-bottom: 2px solid #B9CC4E;
+        font-size: 1.1em;
+    }
+
+    input:focus
+    {
+        outline: none;
+    }
+
+    a
+    {
+        margin-top: 3vh;
+        margin-left: 10vh;
+        text-decoration: none;
+        color: #912280;
+    }
+
+    #agruparHeader
+    {
+        margin-left: 85vh;
+        display: flex;
+    }
+
+    svg
+    {
+        height: 3.5vh;
+        margin-top: -1vh;
+    }
+
+    #busca
+    {
+        margin-top: 3vh;
+        margin-left: 4vh;
+        opacity: 0.8;
+        position: absolute;
+    }
+}
+/* ========================Login======================== */
+#login
+{
+    width: 60vw;
+    height: 70vh;
+    padding: 17vh;
+    border: none;
+    border-radius: 2.5vh;
+    margin: auto;
+    background: #fff;
+    color: #333;
+    overflow-y: hidden;
+
+    h2
+    {
+        text-align: center;
+        margin-bottom: 3vh;
+        color: #912280;
+    }
+    
+    ::backdrop
+    {
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(3px);
+    }
+
+    input
+    {
+        display: block;
+        width: 100%;
+        padding: 2vh;
+        margin-bottom: 3vh;
+        border: 1px solid #ddd;
+        border-radius: 1.2vh;
+        outline: none;
+    }
+
+    #ButLogin
+    {
+        margin-top: 3vh;
+        width: 100%;
+        padding: 2vh;
+        border: none;
+        border-radius: 1.2vh;
+        background: #B9CC4E;
+        color: white;
+        font-size: 1.3rem;
+        cursor: pointer;
+    }
+
+    #ButLogin:hover
+    {
+        background: #9eaf3c;
+    }
+
+    #novo p
+    {
+        text-align: center;
+        margin-top: 2vh;
+    }
+
+    #novo a
+    {
+        color: #82952f;
+        text-decoration: none;
+        font-weight: bold;
+        margin-left: 1vh;
+        font-size: 1.2rem;
+    }
+
+    #fecharLogin
+    {
+        position: absolute;
+        top: 2vh;
+        right: 2vh;
+        background: transparent;
+        border: none;
+        font-size: 3rem;
+        color: #777;
+        cursor: pointer;
+    }
+}
+
+/* ========================Banner======================== */
+#Banner
+{
+    background-image: url(imgs/banner-main.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60vh;
+    width: 190vh;
+    margin-top: 5vh;
+    margin-left: 10vh;
+}
+/* ========================Sobre Nós======================== */
+#SobreNós
+{
+    margin-top: 5vh;
+    h1
+    {
+        text-align: center;
+        color: #912280;
+        margin-bottom: 10vh;
+        font-size: 2.5rem;
+    }
+    
+    #grida
+    {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas: "Texto AçaíImg";
+        justify-items: center;
+    }
+
+    #AçaíCaindo
+    {
+        background-image: url(imgs/açaícaindo.png);
+        background-position: center;
+        background-repeat:no-repeat;
+        background-size: cover;
+        height: 60vh;
+        width: 20vh;
+        position: absolute;
+        margin-left: -140vh;
+        margin-top: -10vh;
+    }
+
+    #textoSobre
+    {
+        grid-area: Texto;
+        font-size: 1.4rem;
+        text-align: justify;
+        margin-left: 50vh;
+    }
+
+    #imgAçaí
+    {
+        background-image: url(imgs/acai-foto-divulgacao_1.png);
+        background-position: center;
+        background-repeat:no-repeat;
+        background-size: cover;
+        height: 37vh;
+        width: 43vh;
+        border-radius: 15%;
+        grid-area: AçaíImg;
+        margin-right: 15vh;
+    }
+}
+/* ========================Essência======================== */
+#Essência
+{
+    margin-top: 20vh;
+    margin-bottom: 10vh;
+    text-align: center;
+
+    h1
+    {
+        color:#912280;
+        font-size: 2.5rem;
+    }
+    h2
+    {
+        color: #B975A3;
+        font-size: 2.1rem;
+    }
+
+    #grida2
+    {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        justify-items: center;
+    }
+
+    #frutasE
+    {
+        background-image: url(imgs/frutasE.png);
+        background-position: center;
+        background-repeat:no-repeat;
+        background-size: cover;
+        height: 65vh;
+        width: 30vh;
+    }
+
+    #Infos
+    {
+        background-image: url(imgs/selos.png);
+        background-position: center;
+        background-repeat:no-repeat;
+        background-size: cover;
+        height: 37vh;
+        width: 93vh;
+        margin-top: 15vh;
+    }
+
+
+    #frutasD
+    {
+        background-image: url(imgs/frutasD.png);
+        background-position: center;
+        background-repeat:no-repeat;
+        background-size: cover;
+        height: 65vh;
+        width: 30vh;
+    }
+}
+/* ========================Footer======================== */
+footer
+{
+    margin-top: 5vh;
+    padding-bottom: 5vh;
+    background-color: #912280;
+    
+    h1
+    {
+        color: white;
+        font-size: 1.9rem;
+    }
+        
+    p
+    {
+        color: #E0C1E3;
+        font-size: 1.4rem;
+        margin-top: 2vh;
+    }
+
+    #agrupar
+    {
+        margin-right: 10vh;
+        display: grid;
+        grid-template-columns: 2fr 1.3fr 2fr 2fr;
+    }
+
+    #logoFooter
+    {
+        margin-top: 5vh;
+        margin-left: 5vh;
+        height: 20vh;
+        width: 35vh;
+    }
+
+    #Acesso, #Ajuda
+    {
+        margin-top: 7vh;
+    }
+
+    #Frase
+    {
+        margin-top: 10vh;
+        h1
+        {
+            font-size: 1.5rem;
+        }
+
+    }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="tema.css">
+    <script src="tema.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+
+    <script src="cadastro.js" defer></script>
+
+</head>
+<body>
+
+<header>
+    
+    <a href="index.html"><img src="imgs/logo.webp"></a>
+
+</header>
+
+<main>
+
+    <form>
+        <div id="textInput">
+            <div id="DivNome">
+                <label>Nome Completo</label>
+                <input type="text" id="nome">
+            </div>
+            <div id="DivSenha">
+                <label>Senha</label>
+                <input type="password" id="senha">
+            </div>
+            <div id="DivEmail">
+                <label>Email</label>
+                <input type="email" id="email">
+            </div>
+            <div id="DivTel">
+                <label>Telefone</label>
+                <input type="tel" id="tel" placeholder="(XX) X XXXX-XXXX" oninput="mascara_tel()">
+            </div>
+            <div id="DivCPF">
+                <label>CPF</label>
+                <input type="text" id="cpf" placeholder="XXX.XXX.XXX-XX" oninput="mascara_cpf()">
+            </div>
+            <div id="DivCEP">
+                <label>CEP</label>
+                <input type="text" id="cep" placeholder="XX.XXX-XXX" oninput="mascara_cep()">
+            </div>
+            <div id="DivEnd">
+                <label>Endereço</label>
+                <input type="text" id="endereço">
+            </div>
+        </div>
+
+        <button type="submit" id="but-form">Cadastrar</button>
+    </form>
+
+</main>
+
+    <footer>
+
+        <section id="agrupar">
+        <div id="LogFooter"><img src="imgs/logo.webp" id="logoFooter"></div>
+        
+        <div id="Acesso">
+            <h1>Acesso Rápido</h1>
+            <a><p>Inicio</p></a>
+            <a><p>Menu</p></a>
+            <a><p>Cadastro</p></a>
+        </div>
+    
+        <div id="Ajuda">
+            <h1>Precisa de ajuda?</h1>
+            <p>Ligue: +55 31 9 9999-9999
+                <br><span>Email: bunnyssuporte@gmail.com.br</span></p>
+        </div>
+
+        <div id="Frase">
+            <h1>— Cremoso, saboroso e do seu jeito. Venha dar um "salto" de sabor no seu dia!</h1>
+        </div>
+        </section>
+    </footer>
+
+</body>
+</html>
