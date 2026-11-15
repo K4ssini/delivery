@@ -66,3 +66,57 @@ function mascara_cpf()
         document.getElementById("cpf").value = cpf.slice(0,11) + "-" + cpf[11];
     }
 }
+
+
+// ==========================================
+// SALVAR O CADASTRO
+// ==========================================
+
+const formCadastro = document.getElementById("formCadastro");
+
+if (formCadastro) {
+    formCadastro.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const nomeCompleto = document.getElementById("nome").value.trim();
+        const senha = document.getElementById("senha").value;
+        const email = document.getElementById("email").value.trim().toLowerCase();
+        const telefone = document.getElementById("tel").value.trim();
+        const cpf = document.getElementById("cpf").value.trim();
+        const cep = document.getElementById("cep").value.trim();
+        const endereco = document.getElementById("endereço").value.trim();
+
+        if (cpf.length !== 14) {
+            alert("CPF incompleto. Use o formato XXX.XXX.XXX-XX.");
+            return;
+        }
+
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+        if (usuarios.some(u => u.email === email)) {
+            alert("Já existe uma conta com esse e-mail.");
+            return;
+        }
+
+        if (usuarios.some(u => u.cpf === cpf)) {
+            alert("Já existe uma conta com esse CPF.");
+            return;
+        }
+
+        usuarios.push({
+            nome: nomeCompleto.split(" ")[0],
+            nomeCompleto: nomeCompleto,
+            email: email,
+            senha: senha,
+            telefone: telefone,
+            cpf: cpf,
+            cep: cep,
+            endereco: endereco
+        });
+
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+        alert("Cadastro realizado com sucesso! Faça seu login.");
+        window.location.href = "index.html";
+    });
+}
