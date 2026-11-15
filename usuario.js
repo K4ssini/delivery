@@ -3,14 +3,12 @@
 // DADOS TEMPORÁRIOS DO PERFIL
 // ==========================================
 
-const usuarioTeste = {
-    nome: "Maria Silva",
-    nomeCompleto: "Maria Silva Santos",
-    endereco: "Rua das Flores, 123",
-    email: "maria@email.com",
-    cpf: "123.456.789-00",
-    cep: "30000-000"
-};
+const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+// Sem login, volta para o início
+if (!usuario) {
+    window.location.href = "index.html";
+}
 
 
 // ==========================================
@@ -20,22 +18,22 @@ const usuarioTeste = {
 function carregarUsuario() {
 
     document.getElementById("nomeUsuario").textContent =
-        usuarioTeste.nome;
+        usuario.nome;
 
     document.getElementById("nomeCompleto").textContent =
-        usuarioTeste.nomeCompleto;
+        usuario.nomeCompleto;
 
     document.getElementById("endereco").textContent =
-        usuarioTeste.endereco;
+        usuario.endereco;
 
     document.getElementById("email").textContent =
-        usuarioTeste.email;
+        usuario.email;
 
     document.getElementById("cpf").textContent =
-        usuarioTeste.cpf;
+        usuario.cpf;
 
     document.getElementById("cep").textContent =
-        usuarioTeste.cep;
+        usuario.cep;
 }
 
 
