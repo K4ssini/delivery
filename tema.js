@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function ()
 {
     const header = document.querySelector("header");
@@ -31,19 +30,7 @@ document.addEventListener("DOMContentLoaded", function ()
     // vê se a pessoa já escolheu um tema antes
     const salvo = localStorage.getItem("tema");
 
-    if (salvo == "escuro")
-    {
-        mudarTema(true);
-    }
-    else if (salvo == "claro")
-    {
-        mudarTema(false);
-    }
-    else
-    {
-        // se nunca escolheu, usa o tema do computador/celular
-        mudarTema(window.matchMedia("(prefers-color-scheme: dark)").matches);
-    }
+
 
     // quando clica no botão
     botao.addEventListener("click", function ()
