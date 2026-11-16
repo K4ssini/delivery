@@ -72,10 +72,11 @@ function mascara_cpf()
 // SALVAR O CADASTRO
 // ==========================================
 
+
 const formCadastro = document.getElementById("formCadastro");
 
 if (formCadastro) {
-    formCadastro.addEventListener("submit", function(event) {
+    formCadastro.addEventListener("submit", async function(event) {
         event.preventDefault();
 
         const nomeCompleto = document.getElementById("nome").value.trim();
@@ -91,32 +92,43 @@ if (formCadastro) {
             return;
         }
 
-        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-        if (usuarios.some(u => u.email === email)) {
-            alert("Já existe uma conta com esse e-mail.");
-            return;
-        }
-
-        if (usuarios.some(u => u.cpf === cpf)) {
-            alert("Já existe uma conta com esse CPF.");
-            return;
-        }
-
-        usuarios.push({
-            nome: nomeCompleto.split(" ")[0],
-            nomeCompleto: nomeCompleto,
+        const cliente = {
+            nome: nomeCompleto,
+            cep: cep,
+            cpf: cpf,
+            endereco: endereco,
             email: email,
             senha: senha,
-            telefone: telefone,
-            cpf: cpf,
-            cep: cep,
-            endereco: endereco
-        });
+            telefone: telefone
+        };
 
-        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        try {
+            const resposta = await fetch("https://localhost:7263/api/clientes/cadastro", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(cliente)
+            });
 
-        alert("Cadastro realizado com sucesso! Faça seu login.");
-        window.location.href = "index.html";
+            const resultado = await resposta.json();
+
+            if (!resposta.ok) {
+                throw new Error(
+                    resultado.mensagem ||
+                    resultado.detail ||
+                    "Não foi possível realizar o cadastro."
+                );
+            }
+
+            alert("Cadastro realizado com sucesso! Faça seu login.");
+
+            formCadastro.reset();
+            window.location.href = "index.html";
+
+        } catch (erro) {
+            console.error("Erro ao cadastrar:", erro);
+            alert("Erro ao realizar cadastro: " + erro.message);
+        }
     });
 }
