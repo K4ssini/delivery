@@ -129,61 +129,80 @@ document.addEventListener("click", function(event) {
 });
 
 
-// ==========================================
-// FINALIZAR PEDIDO E SALVAR NO HISTÓRICO
-// ==========================================
 
-document.getElementById("finalizarPedido").addEventListener("click", function() {
+ // ==========================================
+ // FINALIZAR PEDIDO E ENVIAR PARA A API
+ // ==========================================
 
-    if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
-    }
+const botaoFinalizar = document.getElementById("finalizarPedido");
 
-    // Calcular o valor total
-    const total = carrinho.reduce((soma, produto) => {
-        return soma + Number(produto.preco) * Number(produto.quantidade);
-    }, 0);
+if (botaoFinalizar) {
+    botaoFinalizar.addEventListener("click", async function() {
 
-    // Recuperar pedidos já realizados
-    let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+        if (carrinho.length === 0) {
+            alert("Seu carrinho está vazio!");
+            return;
+        }
 
-    // Criar o novo pedido
-    const pedido = {
-        id: pedidos.length + 1,
+        // Recuperar cliente que fez login
+        const usuarioLogado = JSON.parse(
+            localStorage.getItem("usuarioLogado")
+        );
 
-        data: new Date().toLocaleDateString("pt-BR"),
+        if (!usuarioLogado || !usuarioLogado.idCliente) {
+            alert("Faça login antes de finalizar o pedido.");
+            return;
+        }
 
-        produtos: carrinho.map(produto => ({
-            idProduto: Number(produto.idProduto),
-            nome: produto.nome,
-            quantidade: Number(produto.quantidade),
-            preco: Number(produto.preco)
-        })),
+        // Montar pedido no formato esperado pela API
+        const pedido = {
+            idCliente: Number(usuarioLogado.idCliente),
+            itens: carrinho.map(produto => ({
+                idProduto: Number(produto.idProduto),
+                quantidade: Number(produto.quantidade)
+            }))
+        };
 
-        total: total,
+        try {
+            botaoFinalizar.disabled = true;
 
-        status: "Recebido",
+            const resposta = await fetch("https://localhost:7263/api/pedidos", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(pedido)
+            });
 
-        entregador: "A definir"
-    };
+            const resultado = await resposta.json();
 
-    // Adicionar o pedido ao histórico
-    pedidos.push(pedido);
+            if (!resposta.ok) {
+                throw new Error(
+                    resultado.mensagem ||
+                    resultado.detail ||
+                    "Não foi possível registrar o pedido."
+                );
+            }
 
-    // Salvar no navegador
-    localStorage.setItem("pedidos", JSON.stringify(pedidos));
+            alert(
+                "Pedido realizado com sucesso!\n" +
+                "Número do pedido: " + resultado.idPedido
+            );
 
-    // Preparar JSON para a futura API
-    console.log("JSON do pedido:");
-    console.log(JSON.stringify(pedido, null, 2));
+            // Limpar carrinho somente após confirmação da API
+            carrinho = [];
+            salvarCarrinho();
 
-    // Limpar o carrinho
-    carrinho = [];
-    salvarCarrinho();
+        } catch (erro) {
+            console.error("Erro ao finalizar pedido:", erro);
+            alert("Erro ao finalizar pedido: " + erro.message);
 
-    alert("Pedido realizado com sucesso!");
-});
+        } finally {
+            botaoFinalizar.disabled = false;
+        }
+    });
+}
+
 
 
 // ==========================================
