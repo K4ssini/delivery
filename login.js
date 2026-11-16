@@ -5,22 +5,9 @@ const email = document.getElementById("email");
 const senha = document.getElementById("senha");
 const fecharLogin = document.getElementById("fecharLogin");
 const mensagemLogin = document.getElementById("mensagemLogin");
-
 const botaoUsuario = document.getElementById("user");
 
-// Conta fictícia para testes (continua funcionando)
-const contaTeste = {
-    nome: "Maria",
-    nomeCompleto: "Maria Silva Santos",
-    endereco: "Rua das Flores, 123",
-    email: "maria@email.com",
-    senha: "123456",
-    cpf: "123.456.789-00",
-    cep: "30000-000"
-};
-
-// Clique no ícone de usuário:
-// já logado -> vai para o perfil; senão abre a janela de login
+// Abre o perfil ou a janela de login
 if (botaoUsuario) {
     botaoUsuario.addEventListener("click", function(event) {
         event.preventDefault();
@@ -40,38 +27,55 @@ if (fecharLogin && modalLogin) {
     });
 }
 
-// Login com as contas cadastradas
+// Login pela API
 if (formLogin) {
-    formLogin.addEventListener("submit", function(event) {
+    formLogin.addEventListener("submit", async function(event) {
         event.preventDefault();
 
         const emailDigitado = email.value.trim().toLowerCase();
         const senhaDigitada = senha.value;
 
-        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-        usuarios.push(contaTeste);
+        try {
+            const resposta = await fetch("https://localhost:7263/api/clientes/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: emailDigitado,
+                    senha: senhaDigitada
+                })
+            });
 
-        const conta = usuarios.find(function(u) {
-            return u.email === emailDigitado && u.senha === senhaDigitada;
-        });
+            const resultado = await resposta.json();
 
-        if (conta) {
-            // Guarda os dados da sessão (sem a senha)
+            if (!resposta.ok) {
+                throw new Error(
+                    resultado.mensagem ||
+                    resultado.detail ||
+                    "E-mail ou senha incorretos."
+                );
+            }
+
+            // Guarda os dados do cliente, sem a senha
             const usuario = {
-                nome: conta.nome,
-                nomeCompleto: conta.nomeCompleto,
-                endereco: conta.endereco,
-                email: conta.email,
-                cpf: conta.cpf,
-                cep: conta.cep,
-                telefone: conta.telefone || ""
+                idCliente: resultado.idCliente,
+                nome: resultado.nome,
+                email: resultado.email
             };
 
             localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+
             window.location.href = "usuario.html";
 
-        } else if (mensagemLogin) {
-            mensagemLogin.textContent = "E-mail ou senha incorretos.";
+        } catch (erro) {
+            console.error("Erro no login:", erro);
+
+            if (mensagemLogin) {
+                mensagemLogin.textContent = erro.message;
+            } else {
+                alert(erro.message);
+            }
         }
     });
 }
