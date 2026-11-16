@@ -1,112 +1,141 @@
 
-// ==========================================
-// DADOS TEMPORÁRIOS DO PERFIL
-// ==========================================
+const API_URL = "https://localhost:7263/api";
 
+// Recuperar usuário que fez login
 const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-// Sem login, volta para o início
-if (!usuario) {
+// Se não estiver logado, voltar ao início
+if (!usuario || !usuario.idCliente) {
     window.location.href = "index.html";
+} else {
+    carregarUsuario();
+    carregarPedidos();
 }
 
-
 // ==========================================
-// CARREGAR INFORMAÇÕES DO USUÁRIO
-// ==========================================
-
-function carregarUsuario() {
-
-    document.getElementById("nomeUsuario").textContent =
-        usuario.nome;
-
-    document.getElementById("nomeCompleto").textContent =
-        usuario.nomeCompleto;
-
-    document.getElementById("endereco").textContent =
-        usuario.endereco;
-
-    document.getElementById("email").textContent =
-        usuario.email;
-
-    document.getElementById("cpf").textContent =
-        usuario.cpf;
-
-    document.getElementById("cep").textContent =
-        usuario.cep;
-}
-
-
-// ==========================================
-// CARREGAR HISTÓRICO DE COMPRAS
+// CARREGAR DADOS DO PERFIL
 // ==========================================
 
-function carregarPedidos() {
-
-    const listaPedidos = document.getElementById("listaPedidos");
-
-    listaPedidos.innerHTML = "";
-
-    // Buscar pedidos salvos no navegador
-    const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-
-    if (pedidos.length === 0) {
-        listaPedidos.textContent =
-            "Você ainda não realizou compras.";
-
-        return;
-    }
-
-    // Mostrar cada pedido
-    pedidos.forEach(pedido => {
-
-        const item = document.createElement("div");
-        item.classList.add("pedido");
-
-        const titulo = document.createElement("h3");
-        titulo.textContent = `Pedido #${pedido.id}`;
-
-        const data = document.createElement("p");
-        data.textContent = `Data: ${pedido.data}`;
-
-        const produtos = document.createElement("p");
-
-        const nomesProdutos = pedido.produtos.map(produto => {
-            return `${produto.nome} (x${produto.quantidade})`;
-        }).join(", ");
-
-        produtos.textContent = `Produtos: ${nomesProdutos}`;
-
-        const total = document.createElement("p");
-
-        total.textContent = `Total: ${Number(pedido.total).toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL"
-        })}`;
-
-        const status = document.createElement("p");
-        status.textContent = `Status: ${pedido.status}`;
-
-        const entregador = document.createElement("p");
-        entregador.textContent = `Entregador: ${pedido.entregador}`;
-
-        item.append(
-            titulo,
-            data,
-            produtos,
-            total,
-            status,
-            entregador
+async function carregarUsuario() {
+    try {
+        const resposta = await fetch(
+            `${API_URL}/clientes/${usuario.idCliente}`
         );
 
-        listaPedidos.appendChild(item);
-    });
+        if (!resposta.ok) {
+            throw new Error("Não foi possível carregar o perfil.");
+        }
+
+        const cliente = await resposta.json();
+
+        document.getElementById("nomeUsuario").textContent =
+            cliente.nome.split(" ")[0];
+
+        document.getElementById("nomeCompleto").textContent =
+            cliente.nome;
+
+        document.getElementById("endereco").textContent =
+            cliente.endereco;
+
+        document.getElementById("email").textContent =
+            cliente.email;
+
+        document.getElementById("cpf").textContent =
+            cliente.cpf;
+
+        document.getElementById("cep").textContent =
+            cliente.cep;
+
+    } catch (erro) {
+        console.error("Erro ao carregar perfil:", erro);
+        alert("Não foi possível carregar seus dados.");
+    }
 }
 
+// ==========================================
+// CARREGAR HISTÓRICO DE PEDIDOS
+// ==========================================
+
+async function carregarPedidos() {
+    const listaPedidos = document.getElementById("listaPedidos");
+
+    listaPedidos.innerHTML = "Carregando pedidos...";
+
+    try {
+        const resposta = await fetch(
+            `${API_URL}/clientes/${usuario.idCliente}/pedidos`
+        );
+
+        if (!resposta.ok) {
+            throw new Error("Não foi possível carregar os pedidos.");
+        }
+
+        const pedidos = await resposta.json();
+
+        listaPedidos.innerHTML = "";
+
+        if (pedidos.length === 0) {
+            listaPedidos.textContent =
+                "Você ainda não realizou compras.";
+            return;
+        }
+
+        pedidos.forEach(pedido => {
+            const item = document.createElement("div");
+            item.classList.add("pedido");
+
+            const titulo = document.createElement("h3");
+            titulo.textContent = `Pedido #${pedido.idPedido}`;
+
+            const data = document.createElement("p");
+            data.textContent =
+                `Data: ${new Date(pedido.criadoEm).toLocaleString("pt-BR")}`;
+
+            const produtos = document.createElement("div");
+
+            pedido.itens.forEach(produto => {
+                const linha = document.createElement("p");
+
+                linha.textContent =
+                    `${produto.nomeProduto} - Quantidade: ${produto.quantidade} - ` +
+                    `${Number(produto.precoUnitario).toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL"
+                    })}`;
+
+                produtos.appendChild(linha);
+            });
+
+            const total = document.createElement("p");
+
+            total.textContent =
+                `Total: ${Number(pedido.total).toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                })}`;
+
+            item.append(titulo, data, produtos, total);
+
+            listaPedidos.appendChild(item);
+        });
+
+    } catch (erro) {
+        console.error("Erro ao carregar pedidos:", erro);
+
+        listaPedidos.textContent =
+            "Não foi possível carregar seu histórico de compras.";
+    }
+}
 
 // ==========================================
-// EXECUTAR AS FUNÇÕES
+// SAIR DA CONTA
 // ==========================================
 
-carregarUsuario();
-carregarPedidos();
+const botaoSair = document.getElementById("sair");
+
+if (botaoSair) {
+    botaoSair.addEventListener("click", function() {
+        localStorage.removeItem("usuarioLogado");
+        window.location.href = "index.html";
+    });
+}
